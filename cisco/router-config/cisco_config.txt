@@ -1,0 +1,55 @@
+interface gi0/0
+ description WAN
+ ip address dhcp
+ no shutdown
+ exit
+interface gi0/0
+ ip nat outside
+ exit
+interface gi0/1
+ description Servers
+ encapsulation dot1Q 10
+ ip address 192.168.10.254 255.255.255.0
+ no shutdown
+ exit
+interface gi0/1
+ ip nat inside
+ exit
+interface gi0/1
+ description Accounting
+ encapsulation dot1Q 20
+ ip address 192.168.20.254 255.255.255.0
+ no shutdown
+ exit
+interface gi0/1
+ ip nat inside
+ exit
+interface gi0/1
+ description HR
+ encapsulation dot1Q 30
+ ip address 192.168.30.254 255.255.255.0
+ no shutdown
+ exit
+interface gi0/1
+ ip nat inside
+ exit
+interface gi0/1
+ description Marketing
+ encapsulation dot1Q 40
+ ip address 192.168.40.254 255.255.255.0
+ no shutdown
+ exit
+interface gi0/1
+ ip nat inside
+ exit
+interface gi0/1
+ description Production
+ encapsulation dot1Q 50
+ ip address 192.168.50.254 255.255.255.0
+ no shutdown
+ exit
+interface gi0/1
+ ip nat inside
+ exit
+access-list 1 permit any
+ip nat inside source list 1 interface gi0/0 overload
